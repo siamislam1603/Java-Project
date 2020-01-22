@@ -41,8 +41,22 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         buttonIndicator();
         colorIndicator();
         buttonList.get(buttonIndicate).setBackground(Color.DARK_GRAY);
-        showTime();
-        
+        timerCount=1;
+        t=new Timer(1000,new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if(timerCount==0){
+                    buttonList.get(buttonIndicate).setBackground(Color.DARK_GRAY);
+                    timerCount=1;
+                }
+                else{
+                    buttonList.get(buttonIndicate).setBackground(color.get(colorCount));
+                    timerCount=0;
+                }
+            }
+        });
+        t.start();
+        showTime(); 
     }
     
     void readFile() throws IOException{
@@ -596,7 +610,9 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
 
             jL1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
             jL1.setForeground(new java.awt.Color(51, 153, 0));
+            jL1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             jL1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+            jL1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
             jL1.setPreferredSize(new java.awt.Dimension(45, 23));
             getContentPane().add(jL1);
             jL1.setBounds(20, 60, 960, 90);
@@ -899,25 +915,41 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         buttonList.get(buttonIndicate).setBackground(color.get(colorCount));////Previous button color change to default
         colorIndicator();
         buttonIndicator();
-        buttonList.get(buttonIndicate).setBackground(Color.DARK_GRAY);///////indicator button color has been changed
+        buttonList.get(buttonIndicate).setBackground(Color.DARK_GRAY);
+        timerCount=1;
+        t=new Timer(1000,new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if(timerCount==0){
+                    buttonList.get(buttonIndicate).setBackground(Color.DARK_GRAY);
+                    timerCount=1;
+                }
+                else{
+                    buttonList.get(buttonIndicate).setBackground(color.get(colorCount));
+                    timerCount=0;
+                }
+            }
+        });
+        t.start();
+        ///////indicator button color has been changed
     }
     
     //////////*********//////////////////////////////
     
     public void wordColorChange(){
         k=prev;
-        String s1,s2;
+        String s1;
         s1=c;
         if(c.charAt(k)==' '){
             jL1.setText(String.format("<html>%s<u>%s</u><font color='red'>%s</font></html>", 
-            ">"," ",s1.substring(k,s1.length())));
+            s2+">"," ",s1.substring(k,s1.length())));
         }
         else{
             while(c.charAt(k)!=' '){
                 k++;
             }
             jL1.setText(String.format("<html>%s<u>%s</u>%s<font color='red'>%s</font></html>", 
-            ">",""+s1.charAt(prev),s1.substring(prev+1,k),s1.substring(k,s1.length()))); 
+            s2+">",""+s1.charAt(prev),s1.substring(prev+1,k),s1.substring(k,s1.length()))); 
         }
     }
     
@@ -1002,6 +1034,7 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         if(code==KeyEvent.VK_A && c.charAt(prev)=='a'){
             prev=prev+1;
             wordCount++;
+            s2=s2+" ";
             wordColorChange();
             a=prev-1;
             if(c.charAt(a)!=c.charAt(prev)){
@@ -1012,6 +1045,7 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         else if(code==KeyEvent.VK_B && c.charAt(prev)=='b'){
             wordCount++;
             prev=prev+1;
+            s2=s2+" ";
             wordColorChange();
             a=prev-1;
             if(c.charAt(a)!=c.charAt(prev)){
@@ -1023,6 +1057,7 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         else if(code==KeyEvent.VK_C && c.charAt(prev)=='c'){
             wordCount++;
             prev=prev+1;
+            s2=s2+" ";
             wordColorChange();
             a=prev-1;
             if(c.charAt(a)!=c.charAt(prev)){
@@ -1034,6 +1069,7 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         else if(code==KeyEvent.VK_D && c.charAt(prev)=='d'){
             wordCount++;
             prev=prev+1;
+            s2=s2+" ";
             wordColorChange(); 
             a=prev-1;
             if(c.charAt(a)!=c.charAt(prev)){
@@ -1045,6 +1081,7 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         else if(code==KeyEvent.VK_E && c.charAt(prev)=='e'){
             wordCount++;
             prev=prev+1;
+            s2=s2+" ";
             wordColorChange();
             a=prev-1;
             if(c.charAt(a)!=c.charAt(prev)){
@@ -1056,6 +1093,7 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         else if(code==KeyEvent.VK_F && c.charAt(prev)=='f'){
             wordCount++;
             prev=prev+1;
+            s2=s2+" ";
             wordColorChange();    
             a=prev-1;
             if(c.charAt(a)!=c.charAt(prev)){
@@ -1067,6 +1105,7 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         else if(code==KeyEvent.VK_G && c.charAt(prev)=='g'){
             wordCount++;
             prev=prev+1;
+            s2=s2+" ";
             wordColorChange();
             a=prev-1;
             if(c.charAt(a)!=c.charAt(prev)){
@@ -1078,6 +1117,7 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         else if(code==KeyEvent.VK_H && c.charAt(prev)=='h'){
             wordCount++;
             prev=prev+1;
+            s2=s2+" ";
             wordColorChange();
             a=prev-1;
             if(c.charAt(a)!=c.charAt(prev)){
@@ -1089,6 +1129,7 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         else if(code==KeyEvent.VK_I && c.charAt(prev)=='i'){
             wordCount++;
             prev=prev+1;
+            s2=s2+" ";
             wordColorChange();
             a=prev-1;
             if(c.charAt(a)!=c.charAt(prev)){
@@ -1100,6 +1141,7 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         else if(code==KeyEvent.VK_J && c.charAt(prev)=='j'){
             wordCount++;
             prev=prev+1;
+            s2=s2+" ";
             wordColorChange(); 
             a=prev-1;
             if(c.charAt(a)!=c.charAt(prev)){
@@ -1111,6 +1153,7 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         else if(code==KeyEvent.VK_K && c.charAt(prev)=='k'){
             wordCount++;
             prev=prev+1;
+            s2=s2+" ";
             wordColorChange();
             a=prev-1;
             if(c.charAt(a)!=c.charAt(prev)){
@@ -1121,6 +1164,7 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         else if(code==KeyEvent.VK_L && c.charAt(prev)=='l'){
             wordCount++;
             prev=prev+1;
+            s2=s2+" ";
             wordColorChange();   
             a=prev-1;
             if(c.charAt(a)!=c.charAt(prev)){
@@ -1132,6 +1176,7 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         else if(code==KeyEvent.VK_M && c.charAt(prev)=='m'){
             wordCount++;
             prev=prev+1;
+            s2=s2+" ";
             wordColorChange();   
             a=prev-1;
             if(c.charAt(a)!=c.charAt(prev)){
@@ -1143,6 +1188,7 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         else if(code==KeyEvent.VK_N && c.charAt(prev)=='n'){
             wordCount++;
             prev=prev+1;
+            s2=s2+" ";
             wordColorChange();   
             a=prev-1;
             if(c.charAt(a)!=c.charAt(prev)){
@@ -1153,6 +1199,7 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         else if(code==KeyEvent.VK_O && c.charAt(prev)=='o'){
             wordCount++;
             prev=prev+1;
+            s2=s2+" ";
             wordColorChange();   
             a=prev-1;
             if(c.charAt(a)!=c.charAt(prev)){
@@ -1164,6 +1211,7 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         else if(code==KeyEvent.VK_P && c.charAt(prev)=='p'){
             wordCount++;
             prev=prev+1;
+            s2=s2+" ";
             wordColorChange();   
             a=prev-1;
             if(c.charAt(a)!=c.charAt(prev)){
@@ -1175,6 +1223,7 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         else if(code==KeyEvent.VK_Q && c.charAt(prev)=='q'){
             wordCount++;
             prev=prev+1;
+            s2=s2+" ";
             wordColorChange();   
             a=prev-1;
             if(c.charAt(a)!=c.charAt(prev)){
@@ -1186,6 +1235,7 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         else if(code==KeyEvent.VK_R && c.charAt(prev)=='r'){
             wordCount++;
             prev=prev+1;
+            s2=s2+" ";
             wordColorChange();   
             a=prev-1;
             if(c.charAt(a)!=c.charAt(prev)){
@@ -1197,6 +1247,7 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         else if(code==KeyEvent.VK_S && c.charAt(prev)=='s'){
             wordCount++;
             prev=prev+1;
+            s2=s2+" ";
             wordColorChange();   
             a=prev-1;
             if(c.charAt(a)!=c.charAt(prev)){
@@ -1208,6 +1259,7 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         else if(code==KeyEvent.VK_T && c.charAt(prev)=='t'){
             wordCount++;
             prev=prev+1;
+            s2=s2+" ";
             wordColorChange();   
             a=prev-1;
             if(c.charAt(a)!=c.charAt(prev)){
@@ -1219,6 +1271,7 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         else if(code==KeyEvent.VK_U && c.charAt(prev)=='u'){
             wordCount++;
             prev=prev+1;
+            s2=s2+" ";
             wordColorChange();   
             a=prev-1;
             if(c.charAt(a)!=c.charAt(prev)){
@@ -1230,6 +1283,7 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         else if(code==KeyEvent.VK_V && c.charAt(prev)=='v'){
             wordCount++;
             prev=prev+1;
+            s2=s2+" ";
             wordColorChange();   
             a=prev-1;
             if(c.charAt(a)!=c.charAt(prev)){
@@ -1241,6 +1295,7 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         else if(code==KeyEvent.VK_W && c.charAt(prev)=='w'){
             wordCount++;
             prev=prev+1;
+            s2=s2+" ";
             wordColorChange();   
             a=prev-1;
             if(c.charAt(a)!=c.charAt(prev)){
@@ -1252,6 +1307,7 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         else if(code==KeyEvent.VK_X && c.charAt(prev)=='x'){
             wordCount++;
             prev=prev+1;
+            s2=s2+" ";
             wordColorChange();   
             a=prev-1;
             if(c.charAt(a)!=c.charAt(prev)){
@@ -1263,6 +1319,7 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         else if(code==KeyEvent.VK_Y && c.charAt(prev)=='y'){
             wordCount++;
             prev=prev+1;
+            s2=s2+" ";
             wordColorChange();   
             a=prev-1;
             if(c.charAt(a)!=c.charAt(prev)){
@@ -1274,6 +1331,7 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         else if(code==KeyEvent.VK_Z && c.charAt(prev)=='z'){
             wordCount++;
             prev=prev+1;
+            s2=s2+" ";
             wordColorChange();   
             a=prev-1;
             if(c.charAt(a)!=c.charAt(prev)){
@@ -1285,6 +1343,7 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         else if(code==KeyEvent.VK_SEMICOLON && c.charAt(prev)==';'){
             wordCount++;
             prev=prev+1;
+            s2=s2+" ";
             wordColorChange();   
             a=prev-1;
             if(c.charAt(a)!=c.charAt(prev)){
@@ -1295,6 +1354,7 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         else if(code==KeyEvent.VK_SPACE && c.charAt(prev)==' '){
             wordCount++;
             prev=prev+1;
+            s2=s2+" ";
             wordColorChange();   
             a=prev-1;
             if(c.charAt(a)!=c.charAt(prev)){
@@ -1304,15 +1364,18 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
         }
         else if(code==KeyEvent.VK_ENTER && c.charAt(prev)=='>'){
             wordCount++;
+            t.stop();
             if(count!=ch.size()-1){
             prev=0;
             c=ch.get(++count);
+            s2="";
             wordColorChange();
             buttonColorChange();
             handIndicator();
             }
             else{
             timer.stop();
+            t.stop();
             speed=speed/((initialTime-time)/(double)60000);
             JOptionPane.showMessageDialog(new frame2(), "Speed(WPM):"+speed);
             if(JOptionPane.OK_OPTION==0){
@@ -1338,10 +1401,10 @@ public class frame3 extends javax.swing.JFrame implements ActionListener,KeyList
     ArrayList<JLabel> handLabel=new ArrayList<JLabel>();
     int prev=0,current=0,count=0,buttonIndicate=0,colorIndicate=0,a=0,colorCount=-1,handIndicate,prevHandIndicate=0,k=0;
     long time=300000,initialTime=300000;
-    int minute=0,second1=0,second2=0,wordCount=0;
+    int minute=0,second1=0,second2=0,wordCount=0,timerCount=0;
     double speed=0;
-    Timer timer;
-    String c;
+    Timer timer,t;
+    String c,s2="";
     String c1="all lads sell dill salad> ";
     String c2="alike silas sal feels sad> ";
     String c3="jeff likes sea lakes fields> ";
